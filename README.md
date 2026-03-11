@@ -43,3 +43,9 @@ http://127.0.0.1:8000/
 ## Accès administration
 
 http://127.0.0.1:8000/admin/
+
+## Documentation du projet
+
+Le rapport complet du projet (analyse, conception et explications du code) est disponible dans le document suivant :
+
+➡️ [Voir le rapport du projet](docs/Rapport_projet_mediatheque.pdf)
