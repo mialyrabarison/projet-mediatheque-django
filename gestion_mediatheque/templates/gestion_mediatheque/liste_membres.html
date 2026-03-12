@@ -1,0 +1,17 @@
+<h1>Liste des membres</h1>
+
+<p><a href="/membres/ajouter/">Ajouter un membre</a></p>
+
+<ul>
+    {% for membre in membres %}
+        <li>
+            {{ membre.prenom }} {{ membre.nom }} - {{ membre.email }}
+            | <a href="/membres/modifier/{{ membre.id }}/">Modifier</a>
+            | <a href="/membres/supprimer/{{ membre.id }}/">Supprimer</a>
+        </li>
+    {% empty %}
+        <li>Aucun membre enregistré.</li>
+    {% endfor %}
+</ul>
+
+<p><a href="/bibliothecaire/">Retour espace bibliothécaire</a></p>

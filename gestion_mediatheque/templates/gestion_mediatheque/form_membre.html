@@ -1,0 +1,9 @@
+<h1>{{ titre }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer</button>
+</form>
+
+<p><a href="/membres-page/">Retour à la liste des membres</a></p>

@@ -1,7 +1,9 @@
 import logging
 from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Livre, Dvd, Cd, Membre
 logger = logging.getLogger(__name__)
+from .forms import MembreForm
 
 def accueil(request):
     logger.info("Accès à la page d'accueil")
@@ -78,3 +80,52 @@ def liste_membres(request):
 
     contenu += '<p><a href="/bibliothecaire/">Retour espace bibliothécaire</a></p>'
     return HttpResponse(contenu)
+
+def liste_membres_page(request):
+    membres = Membre.objects.all()
+    return render(request, "gestion_mediatheque/liste_membres.html", {"membres": membres})
+
+
+def ajouter_membre(request):
+    if request.method == "POST":
+        form = MembreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("liste_membres_page")
+    else:
+        form = MembreForm()
+
+    return render(request, "gestion_mediatheque/form_membre.html", {
+        "form": form,
+        "titre": "Ajouter un membre"
+    })
+
+
+def modifier_membre(request, membre_id):
+    membre = get_object_or_404(Membre, id=membre_id)
+
+    if request.method == "POST":
+        form = MembreForm(request.POST, instance=membre)
+        if form.is_valid():
+            form.save()
+            return redirect("liste_membres_page")
+    else:
+        form = MembreForm(instance=membre)
+
+    return render(request, "gestion_mediatheque/form_membre.html", {
+        "form": form,
+        "titre": "Modifier un membre"
+    })
+
+
+def supprimer_membre(request, membre_id):
+    membre = get_object_or_404(Membre, id=membre_id)
+
+    if request.method == "POST":
+        membre.delete()
+        return redirect("liste_membres_page")
+
+    return render(request, "gestion_mediatheque/confirmer_suppression.html", {
+        "objet": membre,
+        "type_objet": "membre"
+    })

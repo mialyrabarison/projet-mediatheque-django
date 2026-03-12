@@ -1,0 +1,10 @@
+<h1>Confirmer la suppression</h1>
+
+<p>Voulez-vous vraiment supprimer ce {{ type_objet }} : {{ objet }} ?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+</form>
+
+<p><a href="/membres-page/">Annuler</a></p>

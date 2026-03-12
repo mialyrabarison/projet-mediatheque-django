@@ -15,6 +15,20 @@ des membres et des emprunts.
 - consultation des médias
 - règles métier pour les emprunts
 - tests automatiques
+### Interface bibliothécaire
+
+- afficher la liste des membres
+- ajouter un membre
+- modifier un membre
+- supprimer un membre
+- afficher la liste des médias
+- ajouter un média
+- créer un emprunt
+- enregistrer le retour d’un emprunt
+
+### Interface membre
+
+- consulter la liste des médias disponibles
 
 ## Technologies utilisées
 
